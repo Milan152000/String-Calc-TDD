@@ -2,6 +2,7 @@ class StringCalc
   def self.add(numbers)
     return 0 if numbers.empty?
 
-    numbers.split(",").map(&:to_i).sum
+    # Regex accepts comma and new line as a delimiter
+    numbers.split(/,|\n/).map(&:to_i).sum
   end
 end

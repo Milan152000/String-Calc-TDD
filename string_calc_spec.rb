@@ -29,5 +29,12 @@ describe StringCalc do
       expect(StringCalc.add("5,6,7,8,9,10")).to eq(45)
       expect(StringCalc.add("100,200,500,1000")).to eq(1800)
     end
+
+    # Accept new line as a delimiter between numbers
+    it "accepts new line \n as a delimiter between numbers" do
+      expect(StringCalc.add("1\n2,3")).to eq(6)
+      expect(StringCalc.add("10\n20,30")).to eq(60)
+      expect(StringCalc.add("100\n1000,2000")).to eq(3100)
+    end
   end
 end
