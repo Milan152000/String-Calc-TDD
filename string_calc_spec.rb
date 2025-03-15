@@ -36,5 +36,12 @@ describe StringCalc do
       expect(StringCalc.add("10\n20,30")).to eq(60)
       expect(StringCalc.add("100\n1000,2000")).to eq(3100)
     end
+
+    # accepts custom delimiters like comma, semicolon, new line all together
+    it "accepts custom delimiters and returns the sum of numbers" do
+      expect(StringCalc.add("//;\n1;2")).to eq(3)
+      expect(StringCalc.add("//-\n10-20-30")).to eq(60)
+      expect(StringCalc.add("//#\n100#200#300")).to eq(600)
+    end
   end
 end
