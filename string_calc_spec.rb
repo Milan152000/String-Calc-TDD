@@ -55,5 +55,11 @@ describe StringCalc do
       expect(StringCalc.add("2,3,1001,50,3000")).to eq(55)
       expect(StringCalc.add("2,1500,100,200,2000")).to eq(302)
     end
+
+    # Accept long custom delimiters
+    it "supports long custom delimiters" do
+      expect(StringCalc.add("//[***]\n1***2***3")).to eq(6)
+      expect(StringCalc.add("//[***]\n10***20***30***1500")).to eq(60)
+    end
   end
 end

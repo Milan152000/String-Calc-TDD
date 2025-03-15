@@ -2,12 +2,17 @@ class StringCalc
   def self.add(numbers)
     return 0 if numbers.empty?
 
-    # Supports custom delimiters where the starting of the numbers input is //
+    # Supports custom long delimiters where the starting of the numbers input is //
     delimiter = ",|\n"
     if numbers.start_with?("//")
-      parts = numbers.split("\n", 2)
-      delimiter = parts[0][2]
-      numbers = parts[1]
+      custom_delimiter_section, numbers = numbers.split("\n", 2)
+      
+      # Check for long custom delimiters inside []
+      if custom_delimiter_section.include?("[")
+        delimiter = custom_delimiter_section.scan(/\[([^\]]+)\]/).flatten.map { |d| Regexp.escape(d) }.join("|")
+      else
+        delimiter = Regexp.escape(custom_delimiter_section[2]) # Single character delimiter
+      end
     end
 
     # Raise an exception and return negative numbers if any negative numbers are encountered
