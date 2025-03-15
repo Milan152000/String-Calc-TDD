@@ -43,5 +43,10 @@ describe StringCalc do
       expect(StringCalc.add("//-\n10-20-30")).to eq(60)
       expect(StringCalc.add("//#\n100#200#300")).to eq(600)
     end
+
+    # Raises an exception if any negative numbers are passed
+    it "raises an exception for negative numbers" do
+      expect { StringCalc.add("1,-2,3,-4") }.to raise_error(RuntimeError, "negatives not allowed: -2, -4")
+    end
   end
 end

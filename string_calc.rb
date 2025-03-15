@@ -10,6 +10,11 @@ class StringCalc
       numbers = parts[1]
     end
 
-    numbers.split(/#{delimiter}|,|\n/).map(&:to_i).sum
+    # Raise an exception and return negative numbers if any negative numbers are encountered
+    num_array = numbers.split(/#{delimiter}|,|\n/).map(&:to_i)
+    negatives = num_array.select { |num| num < 0 }
+    raise "negatives not allowed: #{negatives.join(", ")}" if negatives.any?
+
+    num_array.sum
   end
 end
