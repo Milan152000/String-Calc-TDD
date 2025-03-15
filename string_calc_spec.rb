@@ -13,14 +13,14 @@ describe StringCalc do
       expect(StringCalc.add("1")).to eq(1)
       expect(StringCalc.add("12")).to eq(12)
       expect(StringCalc.add("395")).to eq(395)
-      expect(StringCalc.add("395234")).to eq(395234)  
+      expect(StringCalc.add("999")).to eq(999)  
     end
 
     # Retruns the sum of both numbers if 2 numbers are passed using a comma as a delimiter
     it "returns the sum of two numbers" do
       expect(StringCalc.add("1,2")).to eq(3)
       expect(StringCalc.add("15,25")).to eq(40)
-      expect(StringCalc.add("1123,562")).to eq(1685)
+      expect(StringCalc.add("100,200")).to eq(300)
     end
 
     # Returns the sum of all the numbers passed comma separated
@@ -34,7 +34,7 @@ describe StringCalc do
     it "accepts new line \n as a delimiter between numbers" do
       expect(StringCalc.add("1\n2,3")).to eq(6)
       expect(StringCalc.add("10\n20,30")).to eq(60)
-      expect(StringCalc.add("100\n1000,2000")).to eq(3100)
+      expect(StringCalc.add("100\n200,300")).to eq(600)
     end
 
     # accepts custom delimiters like comma, semicolon, new line all together
@@ -47,6 +47,13 @@ describe StringCalc do
     # Raises an exception if any negative numbers are passed
     it "raises an exception for negative numbers" do
       expect { StringCalc.add("1,-2,3,-4") }.to raise_error(RuntimeError, "negatives not allowed: -2, -4")
+    end
+
+    # Ignores the numbers greater than 1000
+    it "ignores numbers greater than 1000" do
+      expect(StringCalc.add("2,1001")).to eq(2)
+      expect(StringCalc.add("2,3,1001,50,3000")).to eq(55)
+      expect(StringCalc.add("2,1500,100,200,2000")).to eq(302)
     end
   end
 end
