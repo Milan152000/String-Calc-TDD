@@ -22,5 +22,12 @@ describe StringCalc do
       expect(StringCalc.add("15,25")).to eq(40)
       expect(StringCalc.add("1123,562")).to eq(1685)
     end
+
+    # Returns the sum of all the numbers passed comma separated
+    it "returns the sum of multiple numbers" do
+      expect(StringCalc.add("1,2,3,4")).to eq(10)
+      expect(StringCalc.add("5,6,7,8,9,10")).to eq(45)
+      expect(StringCalc.add("100,200,500,1000")).to eq(1800)
+    end
   end
 end
