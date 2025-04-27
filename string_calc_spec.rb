@@ -61,5 +61,11 @@ describe StringCalc do
       expect(StringCalc.add("//[***]\n1***2***3")).to eq(6)
       expect(StringCalc.add("//[***]\n10***20***30***1500")).to eq(60)
     end
+
+    # When the custom delimiter is the * symbol then we have to multiply the numbers
+    it "returns the multiplication of all the numbers passed with delimiter *" do
+      expect(StringCalc.add("//*\n2*3*4")).to eq(24)
+      expect(StringCalc.add("//[*]\n2*3*4")).to eq(24)
+    end
   end
 end
